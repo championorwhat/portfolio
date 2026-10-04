@@ -1,5 +1,5 @@
 // Vercel serverless function: POST /api/chat
-import { handleChat } from "../server/chat-core";
+import { handleChat } from "../server/chat-core.js";
 
 interface Req { method?: string; headers: Record<string, string | string[] | undefined>; body?: unknown; socket?: { remoteAddress?: string } }
 interface Res { status(code: number): Res; json(body: unknown): void; setHeader(k: string, v: string): void }

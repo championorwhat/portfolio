@@ -1,5 +1,5 @@
-import { knowledge } from "../src/data/knowledge";
-import { Retriever } from "../src/lib/retrieve";
+import { knowledge } from "../src/data/knowledge.js";
+import { Retriever } from "../src/lib/retrieve.js";
 
 // Framework-neutral chat handler: used by api/chat.ts (Vercel) and the Vite dev server.
 // Uses a FREE-tier LLM through any OpenAI-compatible endpoint (default: Groq, no credit card needed).

@@ -1,4 +1,4 @@
-import { achievements, clubs, experience, profile, projects, skillGroups } from "./portfolio";
+import { achievements, clubs, experience, profile, projects, skillGroups } from "./portfolio.js";
 import type { Chunk } from "../lib/retrieve";
 
 // The assistant's entire "memory". It is generated from the same data that renders the

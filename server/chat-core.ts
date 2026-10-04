@@ -13,7 +13,7 @@ import { Retriever } from "../src/lib/retrieve.js";
 // With no key (or when the free quota is used up) the site falls back to retrieval-only answers, which cost nothing.
 
 const DEFAULT_BASE = "https://api.groq.com/openai/v1";
-const DEFAULT_MODEL = "llama-3.3-70b-versatile";
+const DEFAULT_MODEL = "openai/gpt-oss-20b";
 const MAX_Q = 300; // characters per question
 const MAX_HISTORY = 4; // previous messages used for follow-ups
 const retriever = new Retriever(knowledge);
@@ -92,7 +92,8 @@ export async function handleChat(req: ChatRequest): Promise<ChatResponse> {
     const r = await fetch(`${base}/chat/completions`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-      body: JSON.stringify({ model, messages, max_tokens: 350, temperature: 0.3 }),
+      // body: JSON.stringify({ model, messages, max_tokens: 350, temperature: 0.3 }),
+      body: JSON.stringify({ model, messages, max_tokens: 1000, temperature: 0.3 }),
       signal: AbortSignal.timeout(20_000),
     });
     if (r.status === 429) return { status: 429, json: { error: "rate_limited", sources } }; // provider's free quota is used up

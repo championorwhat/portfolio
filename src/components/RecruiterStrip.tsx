@@ -7,17 +7,26 @@ export function RecruiterStrip({ onAsk }: { onAsk: (q?: string) => void }) {
   const mode = focusModes[focus];
 
   return (
-    <section aria-label="30-second summary" className="relative z-10 -mt-6 pb-6">
+    <section aria-label="30-second summary for recruiters" className="relative z-10 -mt-6 pb-6">
       <div className="mx-auto max-w-6xl px-5">
         <div className="glass relative overflow-hidden p-5 sm:p-7">
           <div aria-hidden className="bg-gradient-brand pointer-events-none absolute -right-24 -top-24 size-64 rounded-full opacity-20 blur-3xl" />
 
+          {/* availability badge */}
+          <div className="relative mb-4 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-accent" />
+            </span>
+            Final-year B.Tech student · open to full-time roles &amp; internships
+          </div>
+
           <div className="relative flex flex-wrap items-center justify-between gap-3">
             <div>
-              <span className="font-mono text-xs uppercase tracking-[.15em] text-accent">⏱ 30-second summary</span>
-              <h2 className="text-xl font-extrabold sm:text-2xl">I'm hiring for…</h2>
+              <span className="font-mono text-xs uppercase tracking-[.15em] text-accent">⏱ 30-second summary for recruiters</span>
+              <h2 className="text-xl font-extrabold sm:text-2xl">What role are you hiring for?</h2>
             </div>
-            <div role="tablist" aria-label="Role you are hiring for" className="flex flex-wrap gap-2">
+            <div role="tablist" aria-label="Pick the role you are hiring for" className="flex flex-wrap gap-2">
               {(Object.keys(focusModes) as Focus[]).map((f) => (
                 <button
                   key={f} role="tab" aria-selected={focus === f} onClick={() => setFocus(f)}
@@ -50,7 +59,7 @@ export function RecruiterStrip({ onAsk }: { onAsk: (q?: string) => void }) {
             <a href={profile.resume} download className="bg-gradient-brand rounded-full px-5 py-2.5 text-sm font-semibold text-[#05060d] transition hover:-translate-y-0.5">📄 Download resume</a>
             <a href={`mailto:${profile.email}`} className="glass !rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5">✉ Email</a>
             <button onClick={() => onAsk()} className="glass !rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5">✨ Ask my portfolio</button>
-            <span className="text-xs text-muted">The projects, skills and experience below re-rank for this role ↓</span>
+            <span className="text-xs text-muted">Pick a role: the projects, skills and experience below re-rank to match it ↓</span>
           </div>
         </div>
       </div>

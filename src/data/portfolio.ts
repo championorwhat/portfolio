@@ -117,6 +117,17 @@ export const projects = [
     link: "https://github.com/championorwhat/Optimised-Code-Generation-RAG",
   },
   {
+    focus: ["research", "ai"],
+    title: "QGIS Spectral-Index Plugin",
+    emoji: "🛰️",
+    when: "DRDO CAIR Lab · 2025",
+    stack: ["Python", "QGIS", "Remote Sensing", "Deep Learning"],
+    points: [
+      "Automated spectral-index computation for geospatial analysis.",
+      "Custom datasets and models for change detection.",
+    ],
+  },
+  {
     focus: ["ai", "research"],
     title: "TeachMood - Real-Time Emotion Recognition",
     emoji: "😀",
@@ -128,17 +139,6 @@ export const projects = [
     ],
     metric: "72.4% accuracy · 82% instructor satisfaction (25-user study)",
     link: "https://github.com/championorwhat/TeachMood",
-  },
-  {
-    focus: ["research", "ai"],
-    title: "QGIS Spectral-Index Plugin",
-    emoji: "🛰️",
-    when: "DRDO CAIR Lab · 2025",
-    stack: ["Python", "QGIS", "Remote Sensing", "Deep Learning"],
-    points: [
-      "Automated spectral-index computation for geospatial analysis.",
-      "Custom datasets and models for change detection.",
-    ],
   },
 ] as { focus: Focus[]; title: string; emoji: string; when: string; stack: string[]; points: string[]; metric?: string; link?: string }[];
 

@@ -49,10 +49,12 @@ export function AskPortfolio({ open, onOpen, onClose, seed }: { open: boolean; o
         setRemaining(0);
         setMsgs((m) => [...m, offline(q, "The free AI quota is used up for now, so this answer comes straight from the retrieved passages.")]);
       } else {
-        setMsgs((m) => [...m, offline(q, "AI backend unavailable, so this answer comes straight from the retrieved passages.")]);
+        // shows WHY the backend failed, e.g. "502: upstream_error / provider 401 - Invalid API Key"
+        const why = `${r.status}${data?.error ? `: ${data.error}` : ""}${data?.upstream ? ` / provider ${data.upstream}` : ""}${data?.detail ? ` - ${data.detail}` : ""}`;
+        setMsgs((m) => [...m, offline(q, `AI backend unavailable (${why}), so this answer comes straight from the retrieved passages.`)]);
       }
     } catch {
-      setMsgs((m) => [...m, offline(q, "AI backend unavailable, so this answer comes straight from the retrieved passages.")]);
+      setMsgs((m) => [...m, offline(q, "AI backend unreachable (network error), so this answer comes straight from the retrieved passages.")]);
     } finally { setBusy(false); }
   };
 

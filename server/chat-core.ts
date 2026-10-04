@@ -96,12 +96,17 @@ export async function handleChat(req: ChatRequest): Promise<ChatResponse> {
       signal: AbortSignal.timeout(20_000),
     });
     if (r.status === 429) return { status: 429, json: { error: "rate_limited", sources } }; // provider's free quota is used up
-    if (!r.ok) { console.error("chat upstream", r.status, (await r.text()).slice(0, 200)); return { status: 502, json: { error: "upstream_error", sources } }; }
+    if (!r.ok) {
+      const detail = (await r.text()).replace(/\s+/g, " ").slice(0, 200); // provider's error text; contains no secrets
+      console.error("chat upstream", r.status, detail);
+      return { status: 502, json: { error: "upstream_error", upstream: r.status, detail, sources } };
+    }
     const data = (await r.json()) as { choices?: { message?: { content?: string } }[]; model?: string };
     const answer = data.choices?.[0]?.message?.content?.trim();
     return { status: 200, json: { answer: answer || "Sorry, I couldn't produce an answer. Please try rephrasing.", sources, remaining: gate.remaining, mode: "live", model: data.model ?? model } };
   } catch (e) {
-    console.error("chat error", e instanceof Error ? e.message : e);
-    return { status: 502, json: { error: "upstream_error", sources } };
+    const detail = e instanceof Error ? e.message : String(e);
+    console.error("chat error", detail);
+    return { status: 502, json: { error: "upstream_error", detail, sources } };
   }
 }

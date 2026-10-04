@@ -40,6 +40,7 @@ export interface Experience {
   about?: string; stack?: string[]; points: string[]; outcomes?: string[];
 }
 
+// Newest first: PwC (2026) -> DRDO (mid 2025) -> Privacera (winter 2024-25)
 export const experience: Experience[] = [
   {
     focus: ["ai", "cloud"],
@@ -55,21 +56,6 @@ export const experience: Experience[] = [
     ],
   },
   {
-    focus: ["cloud", "ai"],
-    org: "Privacera",
-    role: "Intern", 
-    when: "Dec 2024 - Jan 2025",
-    place: "", // TODO: city, or "Remote"
-    doc: "https://drive.google.com/file/d/1YUyc1eoFO6H5eLJR2yu91-3jPD6hhaNj/view?usp=sharing",
-    about: "Privacera builds data security and access-governance software that helps enterprises control who can see what across their cloud data estate.",
-    stack: ["PAIG", "Vector databases", "Qdrant", "Open source"],
-    points: [
-      "Worked on PAIG, an open-source project, as part of my internship.",
-      "Learned how vector databases work and got hands-on with Qdrant.",
-    ],
-    outcomes: [],
-  },
-  {
     focus: ["research", "ai"],
     org: "CAIR Lab, DRDO",
     role: "Research Intern",
@@ -81,6 +67,21 @@ export const experience: Experience[] = [
       "Created custom datasets and models for change detection, powering geospatial AI workflows.",
       "Developed a QGIS plugin for automated spectral-index calculation; contributed to a domain-specific LLM via prompt engineering.",
     ],
+  },
+  {
+    focus: ["cloud", "ai"],
+    org: "Privacera",
+    role: "Intern",
+    when: "Dec 2024 – Jan 2025",
+    place: "", // TODO: city, or "Remote"
+    doc: "https://drive.google.com/file/d/1YUyc1eoFO6H5eLJR2yu91-3jPD6hhaNj/view?usp=sharing",
+    about: "Privacera builds data security and access-governance software that helps enterprises control who can see what across their cloud data estate.",
+    stack: ["PAIG", "Vector databases", "Qdrant", "Open source"],
+    points: [
+      "Worked on PAIG, an open-source project, as part of my internship.",
+      "Learned how vector databases work and got hands-on with Qdrant.",
+    ],
+    outcomes: [],
   },
 ];
 
@@ -168,7 +169,7 @@ export const navItems = [
 ] as const;
 
 // ============================================================
-// Recruiter fast-path: "I'm hiring for..." focus modes
+// Recruiter fast-path: "What role are you hiring for?" focus modes
 // ============================================================
 export type Focus = "ai" | "cloud" | "research";
 
